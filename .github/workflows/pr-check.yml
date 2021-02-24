@@ -1,0 +1,6 @@
+on: pull_request
+jobs:
+  pr-check:
+    runs-on: ubuntu-latest
+    steps:
+    - run: true
