@@ -1,30 +1,16 @@
-name: Autosquash
+name: Autorebase
 on:
   push:
     branches:
       # A push to main can trigger an update
       - main
-  pull_request:
-    types:
-      # Adding the autosquash label to a pull request can trigger an update or a merge.
-      - labeled
-  check_run:
-    types:
-      # Check runs completing successfully can unblock the corresponding pull requests and make them mergeable.
-      - completed
-  pull_request_review:
-    types:
-      # Review approvals can unblock the pull request and make it mergeable.
-      - submitted
-  # Success statuses can unblock the corresponding pull requests and make them mergeable.
-  status: {}
 
 jobs:
-  autosquash:
-    name: Autosquash
+  autorebase:
+    name: Autorebase
     runs-on: ubuntu-18.04
     steps:
-      - uses: tibdex/autosquash@v2
+      - uses: Tantalon/update-pull-request-branch-action@v1.1.0
         with:
           # The built-in secrets.GITHUB_TOKEN cannot yet be used because of this limitation:
           # https://github.community/t5/GitHub-Actions/Triggering-a-new-workflow-from-another-workflow/td-p/31676
@@ -34,3 +20,4 @@ jobs:
           # - a personal access token
           #   See https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line.
           github_token: ${{ secrets.AUTOSQUASH_TOKEN }}
+          wait: false
