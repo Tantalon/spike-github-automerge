@@ -10,7 +10,7 @@ jobs:
     name: Autorebase
     runs-on: ubuntu-18.04
     steps:
-      - uses: Tantalon/update-pull-request-branch-action@v1.1.1
+      - uses: Tantalon/update-pull-request-branch-action@v1.1.2
         with:
           # The built-in secrets.GITHUB_TOKEN cannot yet be used because of this limitation:
           # https://github.community/t5/GitHub-Actions/Triggering-a-new-workflow-from-another-workflow/td-p/31676
@@ -19,4 +19,5 @@ jobs:
           #   See https://github.com/marketplace/actions/github-app-token.
           # - a personal access token
           #   See https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line.
-          github_token: ${{ secrets.AUTOSQUASH_TOKEN }}
+          github-token: ${{ secrets.AUTOSQUASH_TOKEN }}
+          async: true
